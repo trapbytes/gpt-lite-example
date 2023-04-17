@@ -1,0 +1,52 @@
+==========================
+Simple GPT Implementation
+==========================
+
+
+## Note 
+
+No frills implementaion of Transformer architecutre.
+
+
+## Execution
+
+* Python Packages 
+```sh
+    setuptools
+    wheel
+    pypi
+    tables
+    tqdm==4.65.0
+    numpy==1.24.2
+    pandas==2.0.0
+    h5py==3.1.0
+    scikit-learn
+    torch 
+```
+
+1. Download TinyShakespeare corpus
+wget --output-file=data/tinyshakespeare/input.txt https://raw.githubusercontent.com/karpathy/char-rnn/master/data/tinyshakespeare/input.txt
+
+2. ./gpt.py
+   * Note this should be run on a node with a decent GPU as training will take a long time
+     This code is not parallelized in anyway
+
+
+
+### Docker
+
+1. Build docker image
+```sh
+  sudo docker image build --force-rm --compress -t pytorch-base:1.0.1 .
+```
+
+2. Start container
+```sh
+  IMAGE_NAME=pytorch-base:1.0.1
+  sudo docker run -it --rm --network host --name pytorch-gpt-lite \
+        -v /etc/localtime:/etc/localtime:ro \
+        -v "$PWD/:/workdir:rw" \
+        ${IMAGE_NAME}
+```
+
+
